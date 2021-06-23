@@ -65,11 +65,11 @@ jobs:
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
         
-    - name: 3rd Party Packages
+    - name: Third Party Packages
       working-directory: ./openwrt
         run: |
-          git clone https://github.com/lisaac/luci-app-dockerman
-          git clone https://github.com/lisaac/luci-app-diskman
+          git clone https://github.com/lisaac/luci-app-dockerman.git
+          git clone https://github.com/lisaac/luci-app-diskman.git
         
     - name: Update & Install feeds
       working-directory: ./openwrt
