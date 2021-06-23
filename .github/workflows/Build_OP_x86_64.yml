@@ -58,8 +58,8 @@ jobs:
         sudo -E apt-get clean
         
     - name: 3rd Party Packages
+      working-directory: ./package
         run: |
-          cd package
           mkdir openwrt-packages
           cd openwrt-packages
           git clone https://github.com/lisaac/luci-app-dockerman
