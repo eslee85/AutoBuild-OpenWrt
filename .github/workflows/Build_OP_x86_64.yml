@@ -11,9 +11,9 @@ on:
   release:
     types: [published]
 
-  #push:
-  #  branches: 
-  #    - master
+  push:
+    branches: 
+      - master
 
   #schedule:
   #  - cron: 0 8 * * 5
@@ -63,10 +63,6 @@ jobs:
         REPO_BRANCH: master
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-        git clone https://github.com/lisaac/luci-app-dockerman
-        git clone https://github.com/lisaac/luci-app-diskman
-        echo "src-git dockerman https://github.com/lisaac/luci-app-dockerman.git" >> ./feeds.conf.default
-        echo "src-git diskman https://github.com/lisaac/luci-app-diskman.git" >> ./feeds.conf.default
         cd openwrt
         
     - name: Update & Install feeds
@@ -80,7 +76,15 @@ jobs:
     #  working-directory: ./openwrt
     #  run: |
     #    git clone https://github.com/xiaorouji/openwrt-passwall.git package/lienol
-    #    git clone "your_github_link" package/"your_folder_name"      
+    #    git clone https://github.com/lisaac/luci-app-dockerman.git package/"your_folder_name"  
+    
+     - name: 3rd Party Packages
+        run: |
+          cd package
+          mkdir openwrt-packages
+          cd openwrt-packages
+          git clone https://github.com/lisaac/luci-app-dockerman
+          git clone https://github.com/lisaac/luci-app-diskman
 
     - name: Configuration Customization - Build_x86_64
       env:
